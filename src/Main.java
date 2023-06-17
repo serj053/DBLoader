@@ -6,14 +6,12 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException, SQLException {
         Connection connection = DBConnection.getConnection();
         /*
-        builder.length() 301_989_878
         0.2M  - 129 ms
         1M    -  413 ms
         18M   - 2200 ms

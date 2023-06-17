@@ -3,14 +3,9 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 public class XMLHandler extends DefaultHandler {
     StringBuilder builder = new StringBuilder();
-    private long size;
+    private final long size;
 
     XMLHandler(long size) throws SQLException {
         DBConnection.getConnection();
@@ -18,7 +13,7 @@ public class XMLHandler extends DefaultHandler {
     }
 
     @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+    public void startElement(String uri, String localName, String qName, Attributes attributes){
         if (qName.equals("voter")) {
             String name = attributes.getValue("name");
             String birthDay = attributes.getValue("birthDay");
@@ -42,7 +37,6 @@ public class XMLHandler extends DefaultHandler {
             }
         }
     }
-
     public String getResult() {
         return builder.toString();
     }

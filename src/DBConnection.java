@@ -4,12 +4,11 @@ import java.sql.SQLException;
 
 public class DBConnection {
     private static Connection connection;
-    private static String url = "jdbc:mysql://localhost:3306/voters";
-    private static String user = "root";
-    private static String pass = "3141";
 
-    //создаем соединение и перезаписываем структуру таблицы
     public static Connection getConnection() throws SQLException {
+        String url = "jdbc:mysql://localhost:3306/voters";
+        String user = "root";
+        String pass = "3141";
         Connection connection = DriverManager.getConnection(url, user, pass);
         connection.createStatement().execute("DROP TABLE IF EXISTS about_voters");
         connection.createStatement().execute("CREATE TABLE about_voters(" +
