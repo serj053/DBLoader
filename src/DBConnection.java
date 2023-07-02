@@ -17,14 +17,15 @@ public class DBConnection {
                 "birthDay Date NOT NULL, " +
                 "station INT NOT NULL, " +
                 "time DATETIME NOT NULL, " +
-                "PRIMARY KEY(id))"
+                "PRIMARY KEY(id)," +
+                "UNIQUE KEY name_date(name(50), birthDay))"
         );
         DBConnection.connection = connection;
         return connection;
     }
 
     public static void pushInDB(String sql)  {
-        String insert = "INSERT INTO about_voters(name, birthDay, station, time) " +
+        String insert = "REPLACE INTO about_voters(name, birthDay, station, time) " +
                 "VALUES" + sql +";";
         try {
             DBConnection.connection.createStatement().execute(insert);
